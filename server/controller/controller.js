@@ -1,69 +1,76 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = require('../util/db');
+const { PrismaClient } = require("@prisma/client");
+const prisma = require("../util/db");
 
-async function Student(req,res){
-    try{
-        const newStudent = await prisma.student.create({
-            data:{
-                regno: req.body.regno,
-                name: req.body.name,
-                password: req.body.password
-            },
-        });
-        res.json(newStudent);
-    }catch(error){
-        res.status(500).json({error: 'internal server error'});
-    }
+async function Student(req, res) {
+  try {
+    const newStudent = await prisma.student.create({
+      data: {
+        regno: req.body.regno,
+        name: req.body.name,
+        password: req.body.password,
+      },
+    });
+    res.json(newStudent);
+  } catch (error) {
+    res.status(500).json({ error: "internal server error" });
+  }
 }
 
-async function Lecturer(req,res){
-    try{
-        const newLecturer = await prisma.lecturer.create({
-            data:{
-                regno: req.body.regno,
-                name: req.body.name,
-                password: req.body.password
-            },
-        });
-        res.json(newLecturer);
-    }catch(error){
-        res.status(500).json({error: 'internal server error'});
-    }
+async function Lecturer(req, res) {
+  try {
+    const newLecturer = await prisma.lecturer.create({
+      data: {
+        regno: req.body.regno,
+        name: req.body.name,
+        password: req.body.password,
+      },
+    });
+    res.json(newLecturer);
+  } catch (error) {
+    res.status(500).json({ error: "internal server error" });
+  }
 }
 
-async function createResults(req,res){
-try{
+async function createResults(req, res) {
+  try {
     const newResult = await prisma.results.create({
-        data:{
-            regno: req.body.regno,
-            semester: req.body.semester,
-            code: req.body.code,
-            name: req.body.name,
-            mark: req.body.mark
-        },
+      data: {
+        regno: req.body.regno,
+        semester: req.body.semester,
+        code: req.body.code,
+        name: req.body.name,
+        mark: req.body.mark,
+      },
     });
     res.json(newResult);
-}catch(error){
+  } catch (error) {
     console.error(error);
-    res.status(500).json({error: 'internal server error'})
-}}
-
-async function getStudent(req,res){
-    const studentRegno = req.params.regno;
-    try{
-        const Student = await prisma.student.findUnique({
-            where:{
-                regno: studentRegno,
-            },
-        });
-        if(student){
-            res.json(student);
-        } else{
-            res.status(404).json({error: 'student not found'});
-        }
-    } catch(error){
-        res.status(500).json({error: 'internal server error'});
-    }
+    res.status(500).json({ error: "internal server error" });
+  }
 }
 
-module.exports = {Student, getStudent, Lecturer, createResults};
+async function getResults(req, res) {
+  const regno = req.params.regno;
+  try {
+    const results = await prisma.results.findMany({
+      where: {
+        regno: regno,
+      },
+    });
+
+    if (results.length > 0) {
+      res.json(results);
+    } else {
+      res
+        .status(404)
+        .json({
+          error: "No results found for the provided registration number",
+        });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+module.exports = { Student, getResults, Lecturer, createResults };

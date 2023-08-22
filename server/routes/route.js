@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { Student, getStudent, Lecturer, createResults } = require('../controller/controller');
+const { Student, getResults, Lecturer, createResults } = require('../controller/controller');
 
 router.post('/student', Student);
-router.get('/student/:regno',getStudent);
+router.get('/results/:regno',getResults);
 
 router.post('/lecturer', Lecturer);
 
