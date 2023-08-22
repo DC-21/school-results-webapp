@@ -26,6 +26,12 @@ model Results {
   code String
   name String
   mark String
+}
+
+model Gpa {
+  id Int @id @default(autoincrement())
+  regno String
+  semester String
   gpa String
 }
 

@@ -31,6 +31,22 @@ async function Lecturer(req,res){
     }
 }
 
+async function Results(req,res){
+try{
+    const newResult = await prisma.results.create({
+        data:{
+            regno: req.body.regno,
+            semester: req.body.regno,
+            code: req.body.code,
+            name: req.body.name,
+            mark: red.body.mark
+        },
+    });
+    res.json(newResult);
+}catch(error){
+    res.status(500).json({error: 'internal server error'})
+}}
+
 async function getStudent(req,res){
     const studentRegno = req.params.regno;
     try{
@@ -49,4 +65,4 @@ async function getStudent(req,res){
     }
 }
 
-module.exports = {Student, getStudent, Lecturer};
+module.exports = {Student, getStudent, Lecturer, Results};
