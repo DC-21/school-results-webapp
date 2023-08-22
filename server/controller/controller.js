@@ -51,10 +51,12 @@ async function createResults(req, res) {
 
 async function getResults(req, res) {
   const regno = req.params.regno;
+  const semester = req.body.semester;
   try {
     const results = await prisma.results.findMany({
       where: {
         regno: regno,
+        semester: semester,
       },
     });
 
