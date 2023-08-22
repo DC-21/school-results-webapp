@@ -3,7 +3,7 @@ const prisma = require('../util/db');
 
 async function Student(req,res){
     try{
-        const newStudent = await prisma.Student.create({
+        const newStudent = await prisma.student.create({
             data:{
                 regno: req.body.regno,
                 name: req.body.name,
@@ -15,3 +15,5 @@ async function Student(req,res){
         res.status(500).json({error: 'internal server error'});
     }
 }
+
+module.exports = {Student};
