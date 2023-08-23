@@ -15,11 +15,13 @@ const {
   getGPA,
   updateGPA,
   deleteResults,
+  deleteStudent,
 } = require("../controller/controller");
 
 router.post("/student", Student);
 router.get("/student", getStudents);
 router.put("/student/:regno", updateStudent);
+router.delete("/student/:regno",deleteStudent);
 
 router.get("/results/:regno", getResults);
 router.post("/results", createResults);
