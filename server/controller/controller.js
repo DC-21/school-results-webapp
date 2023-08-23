@@ -166,15 +166,16 @@ async function getResults(req, res) {
 }
 
 async function updateResults(req, res) {
-  const regno = req.params.regno;
-  const { semester, code, name, mark } = req.body;
+  const id = parseInt(req.params.id);
+  const { course,semester, code, name, mark } = req.body;
 
   try {
     const updatedResults = await prisma.results.update({
       where: {
-        regno: regno,
+        id:id,
       },
       data: {
+        course:course,
         semester: semester,
         code: code,
         name: name,
