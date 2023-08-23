@@ -141,6 +141,24 @@ async function createResults(req, res) {
   }
 }
 
+async function deleteResults(req, res) {
+  const id = parseInt(req.params.id);
+
+  try {
+    const deletedResults = await prisma.results.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    res.json(deletedResults);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+
 async function getResults(req, res) {
   const regno = req.params.regno;
   const semester = req.body.semester;
@@ -273,6 +291,7 @@ module.exports = {
   Student,
   updateStudent,
   getResults,
+  deleteResults,
   Lecturer,
   getLecturers,
   updateLecturer,
