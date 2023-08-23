@@ -126,6 +126,7 @@ async function createResults(req, res) {
   try {
     const newResult = await prisma.results.create({
       data: {
+        course:req.body.course,
         regno: req.body.regno,
         semester: req.body.semester,
         code: req.body.code,
@@ -165,7 +166,7 @@ async function getResults(req, res) {
 }
 
 async function updateResults(req, res) {
-  const regno = req.params.regno; // Assuming you're passing the regno as a route parameter
+  const regno = req.params.regno;
   const { semester, code, name, mark } = req.body;
 
   try {
@@ -188,6 +189,39 @@ async function updateResults(req, res) {
   }
 }
 
+async function createGPA(req, res) {
+  try {
+    const newGPA = await prisma.gpa.create({
+      data: {
+        course:req.body.course,
+        regno: req.body.regno,
+        semester: req.body.semester,
+        gpa:req.body.gpa,
+      },
+    });
+    res.json(newGPA);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "internal server error" });
+  }
+}
+
+async function deleteGPA(req, res) {
+  try {
+    const { id } = req.params;
+    const deletedGPA = await prisma.gpa.delete({
+      where: {
+        id: parseInt(id)
+      }
+    });
+    res.json(deletedGPA);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+
 module.exports = {
   Student,
   updateStudent,
@@ -198,4 +232,6 @@ module.exports = {
   createResults,
   updateResults,
   getStudents,
+  createGPA,
+  deleteGPA
 };

@@ -24,7 +24,7 @@ model Lecturer {
 model Results {
   id Int @id @default(autoincrement())
   course String
-  regno String @unique
+  regno String
   semester String
   code String
   name String
@@ -34,7 +34,7 @@ model Results {
 model Gpa {
   id Int @id @default(autoincrement())
   course String
-  regno String @unique
+  regno String
   semester String
   gpa String
 }
