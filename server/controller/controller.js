@@ -5,6 +5,7 @@ async function Student(req, res) {
   try {
     const newStudent = await prisma.student.create({
       data: {
+        course:req.body.course,
         regno: req.body.regno,
         name: req.body.name,
         password: req.body.password,
@@ -41,7 +42,7 @@ async function getStudents(req, res) {
 
 async function updateStudent(req, res) {
   const regno = req.params.regno;
-  const { name, password } = req.body;
+  const { course,name, password } = req.body;
 
   try {
     const updatedStudent = await prisma.student.update({
@@ -49,6 +50,7 @@ async function updateStudent(req, res) {
         regno: regno,
       },
       data: {
+        course:course,
         name: name,
         password: password,
       },
