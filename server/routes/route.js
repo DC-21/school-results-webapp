@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { Student, getResults, Lecturer, getLecturers, createResults, getStudents, updateLecturer } = require('../controller/controller');
+const { Student, getResults, Lecturer, getLecturers, createResults, getStudents, updateLecturer, updateStudent } = require('../controller/controller');
 
 router.post('/student', Student);
 router.get('/student', getStudents);
+router.put('/student/:regno',updateStudent);
 
 router.get('/results/:regno',getResults);
 
