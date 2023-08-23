@@ -80,7 +80,6 @@ async function deleteStudent(req, res) {
   }
 }
 
-
 async function Lecturer(req, res) {
   try {
     const newLecturer = await prisma.lecturer.create({
@@ -140,6 +139,22 @@ async function updateLecturer(req, res) {
   }
 }
 
+async function deleteLecturer(req, res) {
+  const regno = req.params.regno;
+
+  try {
+    const deletedLecturer = await prisma.lecturer.delete({
+      where: {
+        regno: regno,
+      },
+    });
+
+    res.json(deletedLecturer);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
 
 async function createResults(req, res) {
   try {
@@ -315,6 +330,7 @@ module.exports = {
   Lecturer,
   getLecturers,
   updateLecturer,
+  deleteLecturer,
   createResults,
   updateResults,
   getStudents,

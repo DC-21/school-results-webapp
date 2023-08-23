@@ -16,6 +16,7 @@ const {
   updateGPA,
   deleteResults,
   deleteStudent,
+  deleteLecturer,
 } = require("../controller/controller");
 
 router.post("/student", Student);
@@ -31,6 +32,7 @@ router.delete("/results/:id", deleteResults);
 router.post("/lecturer", Lecturer);
 router.get("/lecturer", getLecturers);
 router.put("/lecturer/:regno", updateLecturer);
+router.delete("/lecturer/:regno",deleteLecturer);
 
 router.post("/gpa", createGPA);
 router.delete("/gpa/:id",deleteGPA);
