@@ -17,27 +17,26 @@ async function Student(req, res) {
 }
 
 async function getStudents(req, res) {
-    const regno = req.body.regno; // Use req.body.regno to access registration number from request body
-    try {
-      const students = await prisma.student.findMany({ // Use prisma.student.findMany instead of prisma.students.findMany
-        where: {
-          regno: regno,
-        },
+  const regno = req.body.regno;
+  try {
+    const students = await prisma.student.findMany({
+      where: {
+        regno: regno,
+      },
+    });
+
+    if (students.length > 0) {
+      res.json(students);
+    } else {
+      res.status(404).json({
+        error: "No students found for the provided registration number",
       });
-  
-      if (students.length > 0) {
-        res.json(students);
-      } else {
-        res.status(404).json({
-          error: "No students found for the provided registration number",
-        });
-      }
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ error: "Internal server error" });
     }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
   }
-  
+}
 
 async function Lecturer(req, res) {
   try {
@@ -51,6 +50,50 @@ async function Lecturer(req, res) {
     res.json(newLecturer);
   } catch (error) {
     res.status(500).json({ error: "internal server error" });
+  }
+}
+
+async function getLecturers(req, res) {
+  const regno = req.body.regno;
+  try {
+    const lecturers = await prisma.lecturer.findMany({
+      where: {
+        regno: regno,
+      },
+    });
+
+    if (students.length > 0) {
+      res.json(lecturers);
+    } else {
+      res.status(404).json({
+        error: "No lecturers found for the provided registration number",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+async function updateLecturer(req, res) {
+  const regno = req.params.regno;
+  const { name, password } = req.body;
+
+  try {
+    const updatedLecturer = await prisma.lecturer.update({
+      where: {
+        regno: regno,
+      },
+      data: {
+        name: name,
+        password: password,
+      },
+    });
+
+    res.json(updatedLecturer);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
   }
 }
 
@@ -96,4 +139,12 @@ async function getResults(req, res) {
   }
 }
 
-module.exports = { Student, getResults, Lecturer, createResults, getStudents };
+module.exports = {
+  Student,
+  getResults,
+  Lecturer,
+  getLecturers,
+  updateLecturer,
+  createResults,
+  getStudents,
+};
