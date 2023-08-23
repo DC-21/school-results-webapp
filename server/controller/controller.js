@@ -221,6 +221,53 @@ async function deleteGPA(req, res) {
   }
 }
 
+async function getGPA(req, res) {
+  const regno = req.params.regno;
+  const semester = req.body.semester;
+  try {
+    const gpa = await prisma.gpa.findMany({
+      where: {
+        regno: regno,
+        semester: semester,
+      },
+    });
+
+    if (gpa.length > 0) {
+      res.json(gpa);
+    } else {
+      res.status(404).json({
+        error: "No results found for the provided registration number",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+async function updateGPA(req, res) {
+  const regno = req.params.regno;
+  const { semester,gpa } = req.body;
+
+  try {
+    const updatedGPA = await prisma.gpa.update({
+      where: {
+        regno: regno,
+      },
+      data: {
+        semester: semester,
+        code: code,
+        gpa:gpa,
+      },
+    });
+
+    res.json(updatedGPA);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
 
 module.exports = {
   Student,
@@ -233,5 +280,7 @@ module.exports = {
   updateResults,
   getStudents,
   createGPA,
-  deleteGPA
+  deleteGPA,
+  getGPA,
+  updateGPA
 };
