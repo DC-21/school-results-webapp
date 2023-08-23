@@ -5,7 +5,7 @@ async function Student(req, res) {
   try {
     const newStudent = await prisma.student.create({
       data: {
-        course:req.body.course,
+        course: req.body.course,
         regno: req.body.regno,
         name: req.body.name,
         password: req.body.password,
@@ -42,7 +42,7 @@ async function getStudents(req, res) {
 
 async function updateStudent(req, res) {
   const regno = req.params.regno;
-  const { course,name, password } = req.body;
+  const { course, name, password } = req.body;
 
   try {
     const updatedStudent = await prisma.student.update({
@@ -50,7 +50,7 @@ async function updateStudent(req, res) {
         regno: regno,
       },
       data: {
-        course:course,
+        course: course,
         name: name,
         password: password,
       },
@@ -126,7 +126,7 @@ async function createResults(req, res) {
   try {
     const newResult = await prisma.results.create({
       data: {
-        course:req.body.course,
+        course: req.body.course,
         regno: req.body.regno,
         semester: req.body.semester,
         code: req.body.code,
@@ -193,10 +193,10 @@ async function createGPA(req, res) {
   try {
     const newGPA = await prisma.gpa.create({
       data: {
-        course:req.body.course,
+        course: req.body.course,
         regno: req.body.regno,
         semester: req.body.semester,
-        gpa:req.body.gpa,
+        gpa: req.body.gpa,
       },
     });
     res.json(newGPA);
@@ -211,8 +211,8 @@ async function deleteGPA(req, res) {
     const { id } = req.params;
     const deletedGPA = await prisma.gpa.delete({
       where: {
-        id: parseInt(id)
-      }
+        id: parseInt(id),
+      },
     });
     res.json(deletedGPA);
   } catch (error) {
@@ -246,18 +246,17 @@ async function getGPA(req, res) {
 }
 
 async function updateGPA(req, res) {
-  const regno = req.params.regno;
-  const { semester,gpa } = req.body;
+  const id = parseInt(req.params.id);
+  const { semester, gpa } = req.body;
 
   try {
     const updatedGPA = await prisma.gpa.update({
       where: {
-        regno: regno,
+        id: id,
       },
       data: {
         semester: semester,
-        code: code,
-        gpa:gpa,
+        gpa: gpa,
       },
     });
 
@@ -282,5 +281,5 @@ module.exports = {
   createGPA,
   deleteGPA,
   getGPA,
-  updateGPA
+  updateGPA,
 };

@@ -31,6 +31,6 @@ router.put("/lecturer/:regno", updateLecturer);
 router.post("/gpa", createGPA);
 router.delete("/gpa/:id",deleteGPA);
 router.get("/gpa/:regno",getGPA);
-router.put("/gpa/:regno",updateGPA);
+router.put("/gpa/:id",updateGPA);
 
 module.exports = router;
