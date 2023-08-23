@@ -12,6 +12,7 @@ async function Student(req, res) {
     });
     res.json(newStudent);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "internal server error" });
   }
 }
@@ -162,8 +163,8 @@ async function getResults(req, res) {
 }
 
 async function updateResults(req, res) {
-  const regno = req.params.regno;
-  const { code, name, mark } = req.body;
+  const regno = req.params.regno; // Assuming you're passing the regno as a route parameter
+  const { semester, code, name, mark } = req.body;
 
   try {
     const updatedResults = await prisma.results.update({
@@ -171,6 +172,7 @@ async function updateResults(req, res) {
         regno: regno,
       },
       data: {
+        semester: semester,
         code: code,
         name: name,
         mark: mark,
