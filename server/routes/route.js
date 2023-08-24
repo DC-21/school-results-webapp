@@ -18,12 +18,14 @@ const {
   deleteStudent,
   deleteLecturer,
   lecturerLogin,
+  studentLogin,
 } = require("../controller/controller");
 
 router.post("/student", Student);
 router.get("/student", getStudents);
 router.put("/student/:regno", updateStudent);
 router.delete("/student/:regno",deleteStudent);
+router.post("/student-login", studentLogin);
 
 router.get("/results/:regno", getResults);
 router.post("/results", createResults);
