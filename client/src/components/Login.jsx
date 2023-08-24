@@ -1,8 +1,10 @@
 import { useState } from "react";
+import  { useNavigate } from 'react-router-dom'
 import Image from "../images/login.jpeg";
 import axios from "axios";
 
 const Login = () => {
+    const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [regnoValue, setRegnoValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
@@ -17,6 +19,7 @@ const Login = () => {
       if (response.data.message === "student logged in successfully") {
         setIsLoggedIn(true);
         localStorage.setItem("token", regno);
+        navigate("/home");
       } else {
         console.log("Login failed");
       }
