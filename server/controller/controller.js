@@ -158,6 +158,31 @@ async function deleteLecturer(req, res) {
   }
 }
 
+async function lecturerLogin(req, res) {
+  const { regno, password } = req.body;
+
+  try {
+    const lecturer = await prisma.lecturer.findUnique({
+      where: {
+        regno: regno,
+      },
+    });
+
+    if (!lecturer) {
+      return res.status(401).json({ error: 'Lecturer not found' });
+    }
+
+    if (lecturer.password !== password) {
+      return res.status(401).json({ error: 'Invalid password' });
+    }
+
+    res.json({ message: 'Lecturer logged in successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 async function createResults(req, res) {
   try {
     const newResult = await prisma.results.create({
@@ -176,6 +201,7 @@ async function createResults(req, res) {
     res.status(500).json({ error: "internal server error" });
   }
 }
+
 
 async function deleteResults(req, res) {
   const id = parseInt(req.params.id);
@@ -333,6 +359,7 @@ module.exports = {
   getLecturers,
   updateLecturer,
   deleteLecturer,
+  lecturerLogin,
   createResults,
   updateResults,
   getStudents,
