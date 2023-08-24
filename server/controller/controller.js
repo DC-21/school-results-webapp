@@ -91,14 +91,14 @@ async function studentLogin(req, res) {
     });
 
     if (!student) {
-      return res.status(401).json({ error: 'Lecturer not found' });
+      return res.status(401).json({ error: 'student not found' });
     }
 
     if (student.password !== password) {
       return res.status(401).json({ error: 'Invalid password' });
     }
 
-    res.json({ message: 'Lecturer logged in successfully' });
+    res.json({ message: 'student logged in successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
