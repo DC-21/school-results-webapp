@@ -17,7 +17,7 @@ const Login = () => {
                 <label>Password</label>
                 <input style={{ textAlign:"center"}} type="password" placeholder="password" className="border border-blue-950 rounded h-10 mt-4" />
             </div>
-            <button className="text-white cursor-pointer mt-4 rounded py-2 px-2 bg-gradient-to-r from-purple-400 to-blue-400 hover:bg-gradient-to-r hover:from-purple-400 hover:to-blue-200">Login</button>
+            <button className="text-white cursor-pointer mt-4 rounded py-2 px-2 bg-gray-800 hover:bg-gray-600">Login</button>
         </div>
     </div>
   )
