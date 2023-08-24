@@ -6,8 +6,8 @@ const Login = () => {
         backgroundImage: `url(${Image})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-      }} className='flex w-full h-screen justify-center items-center'>
-        <div className="w-[340px] flex flex-col h-[400px] bg-transparent justify-center items-center border-2 border-gray-700 opacity-100 rounded shadow-lg shadow-black">
+      }} className='flex w-full h-screen justify-center items-center opacity-100 '>
+        <div className="w-[340px] flex flex-col h-[400px] bg-transparent justify-center items-center border-2 border-gray-600 rounded shadow-lg shadow-gray-500">
             <p className="flex text-center text-xl">Login</p>
             <div className="w-full flex flex-col items-center mt-4 px-4">
                 <label>Register Number</label>
