@@ -84,6 +84,7 @@ async function Lecturer(req, res) {
   try {
     const newLecturer = await prisma.lecturer.create({
       data: {
+        department:req.body.department,
         regno: req.body.regno,
         name: req.body.name,
         password: req.body.password,
@@ -91,6 +92,7 @@ async function Lecturer(req, res) {
     });
     res.json(newLecturer);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "internal server error" });
   }
 }
@@ -104,7 +106,7 @@ async function getLecturers(req, res) {
       },
     });
 
-    if (students.length > 0) {
+    if (lecturers.length > 0) {
       res.json(lecturers);
     } else {
       res.status(404).json({
