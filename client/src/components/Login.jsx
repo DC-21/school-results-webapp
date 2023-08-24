@@ -7,7 +7,7 @@ const Login = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }} className='flex w-full h-screen justify-center items-center'>
-        <div className="w-[340px] flex flex-col h-[400px] bg-white justify-center items-center rounded shadow-lg shadow-blue-400">
+        <div className="w-[340px] flex flex-col h-[400px] bg-transparent justify-center items-center border-2 border-black opacity-100 rounded shadow-lg shadow-black">
             <p className="flex text-center text-xl">Login</p>
             <div className="w-full flex flex-col items-center mt-4">
                 <label>Register Number</label>
