@@ -27,7 +27,7 @@ router.put("/student/:regno", updateStudent);
 router.delete("/student/:regno",deleteStudent);
 router.post("/student-login", studentLogin);
 
-router.get("/results/:regno", getResults);
+router.get("/results/:regno/:semester", getResults);
 router.post("/results", createResults);
 router.put("/results/:id", updateResults);
 router.delete("/results/:id", deleteResults);

@@ -9,19 +9,15 @@ const Landing = () => {
     try {
       const regno = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:3000/results/${regno}`,
-        {
-          data: {
-            semester: selectedSemester,
-          },
-        }
+        `http://localhost:3000/results/${regno}/${selectedSemester}`
       );
 
-      const data = response.data;
-      setResults(data);
+    const data = response.data;
+    console.log(data);
+    setResults(data);
 
-      console.log("Fetched Results:", data.results);
-    } catch (error) {
+    console.log("Fetched Results:", data.results);
+  } catch (error) {
       console.error("An error occurred:", error);
     }
   };

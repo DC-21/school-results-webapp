@@ -248,7 +248,7 @@ async function deleteResults(req, res) {
 
 async function getResults(req, res) {
   const regno = req.params.regno;
-  const semester = req.body.semester;
+  const semester = req.params.semester;
   try {
     const results = await prisma.results.findMany({
       where: {
