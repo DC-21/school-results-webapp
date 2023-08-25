@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import School from '../components/School';
 import Profile from "./Profile";
 
 const Landing = () => {
@@ -28,7 +29,8 @@ const Landing = () => {
   }, [selectedSemester]);
 
   return (
-    <div className="w-full h-screen flex flex-col px-4 py-4">
+    <div className="w-full h-auto flex flex-col px-4 py-8">
+      <School/>
       <Profile/>
       <p>Student Results</p>
       <div>
