@@ -1,10 +1,10 @@
 import { useState } from "react";
-import  { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import Image from "../images/login.jpeg";
 import axios from "axios";
 
 const Login = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [regnoValue, setRegnoValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
