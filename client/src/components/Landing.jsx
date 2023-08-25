@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Profile from "./Profile";
 
 const Landing = () => {
   const [results, setResults] = useState([]);
@@ -27,10 +28,11 @@ const Landing = () => {
   }, [selectedSemester]);
 
   return (
-    <div className="w-full h-screen flex flex-col px-4 py-4 justify-center items-center">
+    <div className="w-full h-screen flex flex-col px-4 py-4">
+      <Profile/>
       <p>Student Results</p>
       <div>
-        <div className="w-full flex flex-col items-center mt-2 px-4">
+        <div className="w-full flex flex-col mt-2 px-4">
           <select
             value={selectedSemester}
             onChange={(e) => setSelectedSemester(e.target.value)}
