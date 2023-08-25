@@ -29,12 +29,12 @@ const Landing = () => {
   }, [selectedSemester]);
 
   return (
-    <div className="w-full h-auto flex flex-col px-4 py-8">
+    <div className="w-full h-auto flex flex-col px-4 py-8 justify-center">
       <School/>
       <Profile/>
-      <p>Student Results</p>
+      <p className="w-full flex justify-center">Student Results</p>
       <div>
-        <div className="w-full flex flex-col mt-2 px-4">
+        <div className="w-full flex mt-2 px-4 justify-center">
           <select
             value={selectedSemester}
             onChange={(e) => setSelectedSemester(e.target.value)}
