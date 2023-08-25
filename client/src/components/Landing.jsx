@@ -15,19 +15,24 @@ const Landing = () => {
             semester: selectedSemester,
           },
         }
-      ).then((response)=>{
-        const data = response.data;
-        setResults(data);
-      });
-        console.log("Fetched Results:", response.data.results);
-      } catch (error) {
+      );
+  
+      // Extract data from the response
+      const data = response.data;
+  
+      // Update the state with the fetched data
+      setResults(data);
+  
+      console.log("Fetched Results:", data.results);
+    } catch (error) {
       console.error("An error occurred:", error);
     }
   };
-
+  
   useEffect(() => {
     fetchStudentResults();
   }, [selectedSemester]);
+  
 
 
   return (
