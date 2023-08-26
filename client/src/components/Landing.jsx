@@ -53,7 +53,7 @@ const Landing = () => {
           <select
             value={selectedSemester}
             onChange={(e) => setSelectedSemester(e.target.value)}
-            className="border border-blue-950 rounded h-10 md:w-[250px] w-full mt-2"
+            className="border border-blue-950 text-center rounded h-10 md:w-[250px] w-full mt-2"
           >
             <option value="">Select Semester</option>
             <option value="7">Semester 7</option>
