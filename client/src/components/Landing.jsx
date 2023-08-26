@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import School from '../components/School';
 import Profile from "./Profile";
 import jsPDF from "jspdf";
-import "jspdf-autotable";
+import autoTable from "jspdf-autotable";
 
 const Landing = () => {
   const [results, setResults] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState("");
+  const [selectedSemester, setSelectedSemester] = useState("8");
 
   const fetchStudentResults = async () => {
     try {
@@ -20,7 +20,7 @@ const Landing = () => {
     console.log(data);
     setResults(data);
 
-    console.log("Fetched Results:", data.results);
+    console.log("Fetched Results:", data);
   } catch (error) {
       console.error("An error occurred:", error);
     }
@@ -31,31 +31,12 @@ const Landing = () => {
   }, [selectedSemester]);
 
   const generatePdf = () => {
-    const pdf = new jsPDF();
+      const pdf = new jsPDF();
+      const table = document.getElementById("results-table");
+      autoTable(pdf, { html: table });
 
-    const columns = [
-      { header: "Semester", dataKey: "semester" },
-      { header: "Course", dataKey: "course" },
-      { header: "Module Code", dataKey: "code" },
-      { header: "Module Name", dataKey: "name" },
-      { header: "Mark", dataKey: "mark" },
-    ];
-
-    const rows = results.map((result) => ({
-      semester: result.semester,
-      course: result.course,
-      code: result.code,
-      name: result.name,
-      mark: result.mark,
-    }));
-
-    pdf.autoTable({
-      head: [columns.map(column => column.header)],
-      body: rows,
-    });
-
-    pdf.save("results.pdf");
-  }
+      pdf.save("results.pdf");
+  };
 
   return (
     <div className="w-full h-auto flex flex-col px-4 py-8 justify-center">
@@ -75,7 +56,7 @@ const Landing = () => {
           </select>
         </div>
         <div className="w-full flex mt-4">
-          <table className="w-full table-auto border border-green-700">
+          <table id="results-table" className="w-full table-auto border border-green-700">
             <thead>
               <tr className="bg-green-400">
                 <th className="border border-green-700 px-2 py-2 text-white">
