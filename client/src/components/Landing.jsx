@@ -31,13 +31,12 @@ const Landing = () => {
   }, [selectedSemester]);
 
   const generatePdf = () => {
-      const pdf = new jsPDF();
-      const table = document.getElementById("results-table");
-      autoTable(pdf, { html: table });
-
-      pdf.save("results.pdf");
+    const pdf = new jsPDF();
+    const table = document.getElementById("results-table");
+    autoTable(pdf, { html: table });
+    pdf.save("results.pdf");
   };
-
+  
   return (
     <div className="w-full h-auto flex flex-col px-4 py-8 justify-center">
       <School/>
