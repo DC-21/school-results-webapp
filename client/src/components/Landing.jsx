@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import School from '../components/School';
 import Profile from "./Profile";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const Landing = () => {
   const [results, setResults] = useState([]);
@@ -27,6 +29,33 @@ const Landing = () => {
   useEffect(() => {
     fetchStudentResults();
   }, [selectedSemester]);
+
+  const generatePdf = () => {
+    const pdf = new jsPDF();
+
+    const columns = [
+      { header: "Semester", dataKey: "semester" },
+      { header: "Course", dataKey: "course" },
+      { header: "Module Code", dataKey: "code" },
+      { header: "Module Name", dataKey: "name" },
+      { header: "Mark", dataKey: "mark" },
+    ];
+
+    const rows = results.map((result) => ({
+      semester: result.semester,
+      course: result.course,
+      code: result.code,
+      name: result.name,
+      mark: result.mark,
+    }));
+
+    pdf.autoTable({
+      head: [columns.map(column => column.header)],
+      body: rows,
+    });
+
+    pdf.save("results.pdf");
+  }
 
   return (
     <div className="w-full h-auto flex flex-col px-4 py-8 justify-center">
@@ -88,6 +117,7 @@ const Landing = () => {
               ))}
             </tbody>
           </table>
+          <button onClick={generatePdf}>Download Results</button>
         </div>
       </div>
     </div>
