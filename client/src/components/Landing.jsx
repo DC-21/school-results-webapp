@@ -8,6 +8,12 @@ import autoTable from "jspdf-autotable";
 const Landing = () => {
   const [results, setResults] = useState([]);
   const [selectedSemester, setSelectedSemester] = useState("8");
+  const capitalizeWords = (str) => {
+    return str
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
 
   const fetchStudentResults = async () => {
     try {
@@ -36,7 +42,7 @@ const Landing = () => {
     autoTable(pdf, { html: table });
     pdf.save("results.pdf");
   };
-  
+
   return (
     <div className="w-full h-auto flex flex-col px-4 py-8 justify-center">
       <School/>
@@ -82,16 +88,16 @@ const Landing = () => {
                     {result.semester}
                   </td>
                   <td className="border border-gray-300 px-2 py-2">
-                    {result.course}
+                    {capitalizeWords(result.course)}
                   </td>
                   <td className="border border-gray-300 px-2 py-2">
                     {result.code}
                   </td>
                   <td className="border border-gray-300 px-2 py-2">
-                    {result.name}
+                  {capitalizeWords(result.name)}
                   </td>
                   <td className="border border-gray-300 px-2 py-2">
-                    {result.mark}
+                    {capitalizeWords(result.mark)}
                   </td>
                 </tr>
               ))}
