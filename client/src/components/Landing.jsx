@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import School from '../components/School';
+import School from "../components/School";
 import Profile from "./Profile";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
@@ -10,9 +10,9 @@ const Landing = () => {
   const [selectedSemester, setSelectedSemester] = useState("8");
   const capitalizeWords = (str) => {
     return str
-      .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
   };
 
   const fetchStudentResults = async () => {
@@ -22,12 +22,12 @@ const Landing = () => {
         `http://localhost:3000/results/${regno}/${selectedSemester}`
       );
 
-    const data = response.data;
-    console.log(data);
-    setResults(data);
+      const data = response.data;
+      console.log(data);
+      setResults(data);
 
-    console.log("Fetched Results:", data);
-  } catch (error) {
+      console.log("Fetched Results:", data);
+    } catch (error) {
       console.error("An error occurred:", error);
     }
   };
@@ -45,8 +45,8 @@ const Landing = () => {
 
   return (
     <div className="w-full h-auto flex flex-col px-4 py-8 justify-center">
-      <School/>
-      <Profile/>
+      <School />
+      <Profile />
       <p className="w-full flex justify-center">Student Results</p>
       <div>
         <div className="w-full flex mt-2 px-4 justify-center">
@@ -60,16 +60,13 @@ const Landing = () => {
             <option value="8">Semester 8</option>
           </select>
         </div>
-        <div className="w-full flex mt-4">
-          <table id="results-table" className="w-full table-auto border border-green-700">
+        <div className="w-full flex flex-col mt-4">
+          <table
+            id="results-table"
+            className="w-full table-auto border border-green-700"
+          >
             <thead>
               <tr className="bg-green-400">
-                <th className="border border-green-700 px-2 py-2 text-white">
-                  Semester
-                </th>
-                <th className="border border-green-700 px-2 py-2 text-white">
-                  Course
-                </th>
                 <th className="border border-green-700 px-2 py-2 text-white">
                   Module Code
                 </th>
@@ -85,16 +82,10 @@ const Landing = () => {
               {results.map((result, index) => (
                 <tr key={index}>
                   <td className="border border-gray-300 px-2 py-2">
-                    {result.semester}
-                  </td>
-                  <td className="border border-gray-300 px-2 py-2">
-                    {capitalizeWords(result.course)}
-                  </td>
-                  <td className="border border-gray-300 px-2 py-2">
                     {result.code}
                   </td>
                   <td className="border border-gray-300 px-2 py-2">
-                  {capitalizeWords(result.name)}
+                    {capitalizeWords(result.name)}
                   </td>
                   <td className="border border-gray-300 px-2 py-2">
                     {capitalizeWords(result.mark)}
@@ -103,7 +94,14 @@ const Landing = () => {
               ))}
             </tbody>
           </table>
-          <button onClick={generatePdf}>Download Results</button>
+          <div className="w-full flex justify-center">
+            <button
+              className="px-3 py-2 mt-4 bg-green-500 text-white rounded"
+              onClick={generatePdf}
+            >
+              Download Results
+            </button>
+          </div>
         </div>
       </div>
     </div>
