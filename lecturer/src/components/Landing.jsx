@@ -1,9 +1,8 @@
-import Sidebar from "./Sidebar"
 
 const Landing = () => {
   return (
     <div>
-      <Sidebar/>
+      hello
     </div>
   )
 }
