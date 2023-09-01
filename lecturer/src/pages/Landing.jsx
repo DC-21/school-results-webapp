@@ -46,8 +46,8 @@ const Landing = () => {
                   className="h-8 border border-black rounded"
                 />
               </div>
-              <div className="w-full flex gap-4 justify-start">
-                <label>Full Name:</label>
+              <div className="w-full flex md:flex-row flex-col gap-4 justify-start mt-3">
+                <label className="w-full md:text-start text-center">Full Name:</label>
                 <input
                   style={{ textAlign: "center" }}
                   placeholder="Full name"
