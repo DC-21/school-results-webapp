@@ -36,7 +36,7 @@ const Landing = () => {
         <div className="w-full fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-4 rounded-md w-[900px] items-center flex flex-col">
             <h2 className="text-xl font-semibold mb-4">Add Student</h2>
-            <div className="w-full flex md:flex-row flex-col justify-start">
+            <div className="w-full flex md:flex-row flex-col justify-start gap-4">
               <div className="w-full flex md:flex-row flex-col gap-4 justify-start">
                 <label className="w-full md:text-start text-center">Register Number:</label>
                 <input
@@ -46,7 +46,7 @@ const Landing = () => {
                   className="h-8 border border-black rounded"
                 />
               </div>
-              <div className="w-full flex md:flex-row flex-col gap-4 justify-start mt-3 mb-3">
+              <div className="w-full flex md:flex-row flex-col gap-4 justify-start md:mt-0 mt-1 mb-3">
                 <label className="w-full md:text-start text-center">Full Name:</label>
                 <input
                   style={{ textAlign: "center" }}
