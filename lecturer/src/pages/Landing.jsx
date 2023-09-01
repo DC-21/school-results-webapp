@@ -22,10 +22,9 @@ const Landing = () => {
       </div>
       {/* Add Student Pop-up */}
       {isAddStudentOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded-md">
+        <div className="w-full fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-4 rounded-md w-[700px] items-center flex flex-col">
             <h2 className="text-xl font-semibold mb-4">Add Student</h2>
-            {/* Add your student input fields and form here */}
             <button className="bg-blue-500 text-white px-4 py-2 rounded-md" onClick={closeAddStudentPopup}>
               Close
             </button>
