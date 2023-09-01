@@ -17,6 +17,7 @@ const Login = () => {
       });
 
       if (response.data.message === "Lecturer logged in successfully") {
+        console.log("Setting isLoggedIn to true");
         setIsLoggedIn(true);
         localStorage.setItem("token", regno);
         navigate("/home");
