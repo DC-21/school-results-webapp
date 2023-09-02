@@ -109,8 +109,7 @@ const Landing = () => {
                     style={{ textAlign: "center" }}
                     placeholder="semester"
                     type="text"
-                    value={formData.course}
-                    onChange={handleInputChange}
+                    required
                     className="h-8 border border-black rounded"
                   />
                 </div>
@@ -122,6 +121,7 @@ const Landing = () => {
                     style={{ textAlign: "center" }}
                     placeholder="password"
                     type="password"
+                    required
                     value={formData.password}
                     onChange={handleInputChange}
                     className="h-8 border border-black rounded"
@@ -136,6 +136,7 @@ const Landing = () => {
                   <input
                     style={{ textAlign: "center" }}
                     placeholder="course"
+                    required
                     type="text"
                     value={formData.course}
                     onChange={handleInputChange}
@@ -150,6 +151,7 @@ const Landing = () => {
                     style={{ textAlign: "center" }}
                     placeholder="text"
                     type="semester"
+                    required
                     value={formData.password}
                     onChange={handleInputChange}
                     className="h-8 border border-black rounded"

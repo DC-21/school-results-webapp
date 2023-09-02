@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Image from "../images/login.jpeg";
 import axios from "axios";
 
-const Login = () => {
-  const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const Login = ({setIsLoggedIn,isLoggedIn}) => {
+  const navigate = useNavigate()
   const [regnoValue, setRegnoValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
 
