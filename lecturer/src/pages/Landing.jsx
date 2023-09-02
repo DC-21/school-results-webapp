@@ -1,11 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-import Update from '../components/Update'
 
 const Landing = () => {
   const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
   const [isAddResults, setIsAddResults] = useState(false);
   const [isUpdateResults, setIsUpdateResults] = useState(false);
+  const [isUpdateStudent, setIsUpdateStudent] = useState(false);
 
   const openAddStudentPopup = () => {
     setIsAddStudentOpen(true);
