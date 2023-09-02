@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
+import Update from '../components/Update'
 
 const Landing = () => {
   const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
+  const [isAddResults, setIsAddResults] = useState(false);
+  const [isUpdateResults, setIsUpdateResults] = useState(false);
 
   const openAddStudentPopup = () => {
     setIsAddStudentOpen(true);
@@ -12,27 +15,56 @@ const Landing = () => {
     setIsAddStudentOpen(false);
   };
 
+  const openAddResults = () => {
+    setIsAddResults(true);
+  };
+  const closeAddResults = () => {
+    setIsAddResults(false);
+  };
+
+  const openUpdateResults = () => {
+    setIsUpdateResults(true);
+  }
+
+  const closeUpdateResults=()=>{
+    setIsUpdateResults(false);
+  }
+
   return (
     <div className="w-full h-screen flex flex-col justify-center gap-4">
       <div className="w-full items-center justify-center flex gap-4">
         <div
-          onClick={openAddStudentPopup}
-          className="py-4 px-2 w-[150px] bg-green-600 rounded text-white text-lg text-center"
+          onClick={openAddResults}
+          className="cursor-pointer py-4 px-2 w-[150px] bg-green-600 rounded text-white text-lg text-center"
         >
           Add Results
         </div>
-        <div className="py-4 px-2 w-[150px] bg-orange-400 rounded text-white text-lg">
+        <div onClick={openUpdateResults} className="cursor-pointer py-4 px-2 w-[150px] bg-orange-400 rounded text-white text-lg">
           Update Results
         </div>
       </div>
       <div className="w-full items-center justify-center flex gap-4">
-        <div className="py-4 px-2 w-[150px]  bg-orange-400 rounded text-white text-lg text-center">
+        <div
+          onClick={openAddStudentPopup}
+          className="cursor-pointer py-4 px-2 w-[150px]  bg-orange-400 rounded text-white text-lg text-center"
+        >
           Add Student
         </div>
-        <div className="py-4 px-2 w-[150px] bg-green-600 rounded text-white text-lg">
+        <div className="cursor-pointer py-4 px-2 w-[150px] bg-green-600 rounded text-white text-lg">
           Update Details
         </div>
       </div>
+
+      {isUpdateResults && (
+        <div className="w-full fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">Update<button onClick={closeUpdateResults}>close</button></div>
+      )}
+
+      {isAddResults && (
+        <div className="w-full fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          hello
+          <button onClick={closeAddResults}>close</button>
+        </div>
+      )}
 
       {isAddStudentOpen && (
         <div className="w-full fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -118,9 +150,7 @@ const Landing = () => {
               </div>
             </div>
             <div className="w-full flex md:flex-row flex-col gap-4 justify-center items-center">
-              <button
-                className="w-full text-center bg-blue-500 text-white px-4 py-2 rounded-md flex"
-              >
+              <button className="w-full text-center bg-blue-500 text-white px-4 py-2 rounded-md flex">
                 Submit
               </button>
               <button
