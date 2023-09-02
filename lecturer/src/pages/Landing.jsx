@@ -11,37 +11,6 @@ const Landing = () => {
   const closeAddStudentPopup = () => {
     setIsAddStudentOpen(false);
   };
-  const [formData, setFormData] = useState({
-    registerNumber: "",
-    fullName: "",
-    course: "",
-    password: "",
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = () => {
-    // Make an HTTP POST request to '/student' with the form data
-    axios
-      .post("/student", formData)
-      .then((response) => {
-        // Handle success if needed
-        console.log("Student data posted successfully:", response.data);
-      })
-      .catch((error) => {
-        // Handle errors if any
-        console.error("Error posting student data:", error);
-      });
-
-    // Close the popup after submitting
-    closeAddStudentPopup();
-  };
 
   return (
     <div className="w-full h-screen flex flex-col justify-center gap-4">
@@ -64,7 +33,7 @@ const Landing = () => {
           Update Details
         </div>
       </div>
-      {/* Add Student Pop-up */}
+
       {isAddStudentOpen && (
         <div className="w-full fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-4 rounded-md w-[900px] items-center flex flex-col">
@@ -78,10 +47,7 @@ const Landing = () => {
                   <input
                     style={{ textAlign: "center" }}
                     placeholder="Register number"
-                    value={formData.registerNumber}
-                    onChange={handleInputChange}
-                    type="text
-                      "
+                    type="number"
                     className="h-8 border border-black rounded"
                   />
                 </div>
@@ -94,8 +60,6 @@ const Landing = () => {
                     placeholder="Full name"
                     type="name"
                     required
-                    value={formData.fullName}
-                    onChange={handleInputChange}
                     className="h-8 border border-black rounded"
                   />
                 </div>
@@ -103,11 +67,11 @@ const Landing = () => {
               <div className="w-full flex md:flex-row flex-col justify-start gap-4">
                 <div className="w-full flex md:flex-row flex-col gap-4 justify-start">
                   <label className="w-full md:text-start text-center">
-                    Semester:
+                    Department:
                   </label>
                   <input
                     style={{ textAlign: "center" }}
-                    placeholder="semester"
+                    placeholder="department"
                     type="text"
                     required
                     className="h-8 border border-black rounded"
@@ -155,7 +119,6 @@ const Landing = () => {
             </div>
             <div className="w-full flex md:flex-row flex-col gap-4 justify-center items-center">
               <button
-                onClick={handleSubmit}
                 className="w-full text-center bg-blue-500 text-white px-4 py-2 rounded-md flex"
               >
                 Submit
