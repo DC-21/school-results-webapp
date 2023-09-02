@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 const Landing = () => {
   const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
@@ -10,6 +11,38 @@ const Landing = () => {
   const closeAddStudentPopup = () => {
     setIsAddStudentOpen(false);
   };
+  const [formData, setFormData] = useState({
+    registerNumber: "",
+    fullName: "",
+    course: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = () => {
+    // Make an HTTP POST request to '/student' with the form data
+    axios
+      .post("/student", formData)
+      .then((response) => {
+        // Handle success if needed
+        console.log("Student data posted successfully:", response.data);
+      })
+      .catch((error) => {
+        // Handle errors if any
+        console.error("Error posting student data:", error);
+      });
+
+    // Close the popup after submitting
+    closeAddStudentPopup();
+  };
+
   return (
     <div className="w-full h-screen flex flex-col justify-center gap-4">
       <div className="w-full items-center justify-center flex gap-4">
@@ -45,7 +78,10 @@ const Landing = () => {
                   <input
                     style={{ textAlign: "center" }}
                     placeholder="Register number"
-                    type="number"
+                    value={formData.registerNumber}
+                    onChange={handleInputChange}
+                    type="text
+                      "
                     className="h-8 border border-black rounded"
                   />
                 </div>
@@ -57,6 +93,37 @@ const Landing = () => {
                     style={{ textAlign: "center" }}
                     placeholder="Full name"
                     type="name"
+                    required
+                    value={formData.fullName}
+                    onChange={handleInputChange}
+                    className="h-8 border border-black rounded"
+                  />
+                </div>
+              </div>
+              <div className="w-full flex md:flex-row flex-col justify-start gap-4">
+                <div className="w-full flex md:flex-row flex-col gap-4 justify-start">
+                  <label className="w-full md:text-start text-center">
+                    Semester:
+                  </label>
+                  <input
+                    style={{ textAlign: "center" }}
+                    placeholder="semester"
+                    type="text"
+                    value={formData.course}
+                    onChange={handleInputChange}
+                    className="h-8 border border-black rounded"
+                  />
+                </div>
+                <div className="w-full flex md:flex-row flex-col gap-4 justify-start md:mt-0 mt-1 mb-3">
+                  <label className="w-full md:text-start text-center">
+                    Password:
+                  </label>
+                  <input
+                    style={{ textAlign: "center" }}
+                    placeholder="password"
+                    type="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
                     className="h-8 border border-black rounded"
                   />
                 </div>
@@ -70,28 +137,40 @@ const Landing = () => {
                     style={{ textAlign: "center" }}
                     placeholder="course"
                     type="text"
+                    value={formData.course}
+                    onChange={handleInputChange}
                     className="h-8 border border-black rounded"
                   />
                 </div>
                 <div className="w-full flex md:flex-row flex-col gap-4 justify-start md:mt-0 mt-1 mb-3">
                   <label className="w-full md:text-start text-center">
-                    Password:
+                    Semester:
                   </label>
                   <input
                     style={{ textAlign: "center" }}
-                    placeholder="password"
-                    type="password"
+                    placeholder="text"
+                    type="semester"
+                    value={formData.password}
+                    onChange={handleInputChange}
                     className="h-8 border border-black rounded"
                   />
                 </div>
               </div>
             </div>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded-md"
-              onClick={closeAddStudentPopup}
-            >
-              Close
-            </button>
+            <div className="w-full flex md:flex-row flex-col gap-4 justify-center items-center">
+              <button
+                onClick={handleSubmit}
+                className="w-full text-center bg-blue-500 text-white px-4 py-2 rounded-md flex"
+              >
+                Submit
+              </button>
+              <button
+                className="w-full bg-blue-500 text-white px-4 py-2 rounded-md flex"
+                onClick={closeAddStudentPopup}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}
