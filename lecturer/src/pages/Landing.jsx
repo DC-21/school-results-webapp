@@ -24,19 +24,19 @@ const Landing = () => {
 
   const openUpdateResults = () => {
     setIsUpdateResults(true);
-  }
+  };
 
-  const closeUpdateResults=()=>{
+  const closeUpdateResults = () => {
     setIsUpdateResults(false);
-  }
+  };
 
-  const openUpdateStudent =()=>{
+  const openUpdateStudent = () => {
     setIsUpdateStudent(true);
-  }
-  
-  const closeUpdateStudent=()=>{
+  };
+
+  const closeUpdateStudent = () => {
     setIsUpdateStudent(false);
-  }
+  };
 
   return (
     <div className="w-full h-screen flex flex-col justify-center gap-4">
@@ -47,7 +47,10 @@ const Landing = () => {
         >
           Add Results
         </div>
-        <div onClick={openUpdateResults} className="cursor-pointer py-4 px-2 w-[150px] bg-orange-400 rounded text-white text-lg">
+        <div
+          onClick={openUpdateResults}
+          className="cursor-pointer py-4 px-2 w-[150px] bg-orange-400 rounded text-white text-lg"
+        >
           Update Results
         </div>
       </div>
@@ -58,19 +61,30 @@ const Landing = () => {
         >
           Add Student
         </div>
-        <div className="cursor-pointer py-4 px-2 w-[150px] bg-green-600 rounded text-white text-lg">
+        <div
+          onClick={openUpdateStudent}
+          className="cursor-pointer py-4 px-2 w-[150px] bg-green-600 rounded text-white text-lg"
+        >
           Update Details
         </div>
       </div>
-
-      {isUpdateResults && (
-        <div className="w-full fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">Update<button onClick={closeUpdateResults}>close</button></div>
-      )}
 
       {isAddResults && (
         <div className="w-full fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           hello
           <button onClick={closeAddResults}>close</button>
+        </div>
+      )}
+
+      {isUpdateResults && (
+        <div className="w-full fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          Update<button onClick={closeUpdateResults}>close</button>
+        </div>
+      )}
+
+      {isUpdateStudent && (
+        <div className="w-full fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          Update<button onClick={closeUpdateStudent}>close</button>
         </div>
       )}
 
