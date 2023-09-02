@@ -86,76 +86,9 @@ const Landing = () => {
                     className="h-8 border border-black rounded"
                   />
                 </div>
-                <div className="w-full flex md:flex-row flex-col gap-4 justify-start md:mt-0 mt-1 mb-3">
-                  <label className="w-full md:text-start text-center">
-                    Full Name:
-                  </label>
-                  <input
-                    style={{ textAlign: "center" }}
-                    placeholder="Full name"
-                    type="name"
-                    required
-                    className="h-8 border border-black rounded"
-                  />
-                </div>
-              </div>
-              <div className="w-full flex md:flex-row flex-col justify-start gap-4">
-                <div className="w-full flex md:flex-row flex-col gap-4 justify-start">
-                  <label className="w-full md:text-start text-center">
-                    Department:
-                  </label>
-                  <input
-                    style={{ textAlign: "center" }}
-                    placeholder="department"
-                    type="text"
-                    required
-                    className="h-8 border border-black rounded"
-                  />
-                </div>
-                <div className="w-full flex md:flex-row flex-col gap-4 justify-start md:mt-0 mt-1 mb-3">
-                  <label className="w-full md:text-start text-center">
-                    Password:
-                  </label>
-                  <input
-                    style={{ textAlign: "center" }}
-                    placeholder="password"
-                    type="password"
-                    required
-                    className="h-8 border border-black rounded"
-                  />
-                </div>
-              </div>
-              <div className="w-full flex md:flex-row flex-col justify-start gap-4">
-                <div className="w-full flex md:flex-row flex-col gap-4 justify-start">
-                  <label className="w-full md:text-start text-center">
-                    Course:
-                  </label>
-                  <input
-                    style={{ textAlign: "center" }}
-                    placeholder="course"
-                    required
-                    type="text"
-                    className="h-8 border border-black rounded"
-                  />
-                </div>
-                <div className="w-full flex md:flex-row flex-col gap-4 justify-start md:mt-0 mt-1 mb-3">
-                  <label className="w-full md:text-start text-center">
-                    Semester:
-                  </label>
-                  <input
-                    style={{ textAlign: "center" }}
-                    placeholder="semester"
-                    type="number"
-                    required
-                    className="h-8 border border-black rounded"
-                  />
-                </div>
               </div>
             </div>
-            <div className="w-full flex md:flex-row flex-col gap-4 justify-center items-center">
-              <button className="w-full text-center bg-blue-500 text-white px-4 py-2 rounded-md flex">
-                Submit
-              </button>
+            <div className="w-full flex md:flex-row flex-col mt-4 gap-4 justify-center items-center">
               <button
                 className="w-full bg-blue-500 text-white px-4 py-2 rounded-md flex"
                 onClick={closeAddResults}
