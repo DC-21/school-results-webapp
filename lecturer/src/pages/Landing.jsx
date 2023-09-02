@@ -30,6 +30,14 @@ const Landing = () => {
     setIsUpdateResults(false);
   }
 
+  const openUpdateStudent =()=>{
+    setIsUpdateStudent(true);
+  }
+  
+  const closeUpdateStudent=()=>{
+    setIsUpdateStudent(false);
+  }
+
   return (
     <div className="w-full h-screen flex flex-col justify-center gap-4">
       <div className="w-full items-center justify-center flex gap-4">
