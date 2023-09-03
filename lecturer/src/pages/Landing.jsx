@@ -100,9 +100,9 @@ const Landing = () => {
               <ul>
                 {studentData.map((student) => (
                   <li key={student.id}>
-                    <div className="w-full flex justify-between">
-                    <p>{student.name}</p>
-                    <p>{student.regno}</p>
+                    <div className="w-full flex justify-between px-4 py-1 cursor-pointer rounded hover:bg-blue-300">
+                      <p>{student.name}</p>
+                      <p>{student.regno}</p>
                     </div>
                   </li>
                 ))}
