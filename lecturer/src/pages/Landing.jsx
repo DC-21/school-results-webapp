@@ -1,4 +1,4 @@
-import { useEffect ,useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Landing = () => {
@@ -44,7 +44,7 @@ const Landing = () => {
       const response = await axios.get("http://localhost:3000/student");
       // Assuming the response contains an array of student data
       setStudentData(response.data);
-      console.log(response.data)
+      console.log(response.data);
     } catch (error) {
       console.error("Error fetching student data:", error);
     }
@@ -98,12 +98,15 @@ const Landing = () => {
                 className="h-10 border border-black rounded"
               />
               <ul>
-          {studentData.map((student) => (
-            <li key={student.id}>
-              {student.name} - {student.regno}
-            </li>
-          ))}
-        </ul>
+                {studentData.map((student) => (
+                  <li key={student.id}>
+                    <div className="w-full flex justify-between">
+                    <p>{student.name}</p>
+                    <p>{student.regno}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="w-full flex md:flex-row flex-col mt-4 gap-4 justify-center items-center">
               <button
