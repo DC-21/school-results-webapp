@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Landing = () => {
@@ -6,6 +6,8 @@ const Landing = () => {
   const [isAddResults, setIsAddResults] = useState(false);
   const [isUpdateResults, setIsUpdateResults] = useState(false);
   const [isUpdateStudent, setIsUpdateStudent] = useState(false);
+
+  const[student, setStudent]=useState(false);
 
   const openAddStudentPopup = () => {
     setIsAddStudentOpen(true);
@@ -37,6 +39,16 @@ const Landing = () => {
   const closeUpdateStudent = () => {
     setIsUpdateStudent(false);
   };
+  
+  useEffect=()=>{
+    axios.get("http://localhost:3000/student").then((response)=>{
+      const data = response.data;
+      console.log(data);
+      setStudent(data)
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
 
   return (
     <div className="w-full h-screen flex flex-col justify-center gap-4">
