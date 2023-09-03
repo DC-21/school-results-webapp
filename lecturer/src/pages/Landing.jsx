@@ -97,6 +97,13 @@ const Landing = () => {
                 type="number"
                 className="h-10 border border-black rounded"
               />
+              <ul>
+          {studentData.map((student) => (
+            <li key={student.id}>
+              {student.name} - {student.regno}
+            </li>
+          ))}
+        </ul>
             </div>
             <div className="w-full flex md:flex-row flex-col mt-4 gap-4 justify-center items-center">
               <button
