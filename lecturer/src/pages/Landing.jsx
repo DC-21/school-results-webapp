@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect ,useState } from "react";
 import axios from "axios";
 
 const Landing = () => {
@@ -6,6 +6,7 @@ const Landing = () => {
   const [isAddResults, setIsAddResults] = useState(false);
   const [isUpdateResults, setIsUpdateResults] = useState(false);
   const [isUpdateStudent, setIsUpdateStudent] = useState(false);
+  const [studentData, setStudentData] = useState([]);
 
   const openAddStudentPopup = () => {
     setIsAddStudentOpen(true);
@@ -37,6 +38,22 @@ const Landing = () => {
   const closeUpdateStudent = () => {
     setIsUpdateStudent(false);
   };
+
+  const fetchStudentData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/student");
+      // Assuming the response contains an array of student data
+      setStudentData(response.data);
+      console.log(response.data)
+    } catch (error) {
+      console.error("Error fetching student data:", error);
+    }
+  };
+
+  // Call the fetchStudentData function when the component mounts
+  useEffect(() => {
+    fetchStudentData();
+  }, []);
 
   return (
     <div className="w-full h-screen flex flex-col justify-center gap-4">
