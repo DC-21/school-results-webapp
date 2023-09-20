@@ -11,19 +11,21 @@ model Lecturer {
   regno String @unique
   name String
   password String
+students   Student[]
 }
 
 model Student {
-  id     Int     @id @default(autoincrement())
-  course String
-  regno  String  @unique
-  name   String
+  id       Int      @id @default(autoincrement())
+  course   String
+  regno    String   @unique
+  name     String
   password String
-  intake String
-  advisor String
-  results Results[]
+  intake   String
+  advisor  String
+  results  Results[]
+  gpa Gpa[]
+  lecturer Lecturer? @relation(fields: [advisor], references: [regno])
 }
-
 model Results {
   id       Int     @id @default(autoincrement())
   course   String
@@ -41,6 +43,7 @@ model Gpa {
   regno String
   semester String
   gpa String
+  student  Student @relation(fields: [regno], references: [regno])
 }
 
 datasource db {
