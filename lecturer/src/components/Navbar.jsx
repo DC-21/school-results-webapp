@@ -7,8 +7,8 @@ const Navbar = () => {
         <img className="w-[100px] h-[80px] rounded" src={logo} alt="logo" />
         <a className="text-white text-xl">DMI ST EUGENE UNIVERSITY</a>
         <div className="gap-4 flex">
-          <a className="text-white text-lg">My Class</a>
-          <a className="text-white text-lg">Profile</a>
+          <a className="text-white text-lg hover:bg-green-300 py-2 px-2 rounded cursor-pointer">My Class</a>
+          <a className="text-white text-lg hover:bg-green-300 py-2 px-2 rounded cursor-pointer">Profile</a>
         </div>
       </div>
     </div>
