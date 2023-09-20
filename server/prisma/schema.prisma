@@ -5,14 +5,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Student {
-  id Int @id @default(autoincrement())
-  course String
-  regno String @unique
-  name String
-  password String
-}
-
 model Lecturer {
   id Int @id @default(autoincrement())
   department String
@@ -21,14 +13,26 @@ model Lecturer {
   password String
 }
 
-model Results {
-  id Int @id @default(autoincrement())
+model Student {
+  id     Int     @id @default(autoincrement())
   course String
-  regno String
+  regno  String  @unique
+  name   String
+  password String
+  intake String
+  advisor String
+  results Results[]
+}
+
+model Results {
+  id       Int     @id @default(autoincrement())
+  course   String
+  regno    String
   semester String
-  code String
-  name String
-  mark String
+  code     String
+  name     String
+  mark     String
+  student  Student  @relation(fields: [regno], references: [regno])
 }
 
 model Gpa {
