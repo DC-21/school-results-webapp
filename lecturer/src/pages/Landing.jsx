@@ -74,13 +74,13 @@ const Landing = () => {
       <div className="w-full items-center justify-center flex gap-4">
         <div
           onClick={openAddStudentPopup}
-          className="cursor-pointer py-4 px-2 w-[150px]  bg-orange-400 rounded text-white text-lg text-center"
+          className="cursor-pointer py-4 px-2 w-[150px]  bg-red-600 rounded text-white text-lg text-center"
         >
           Add Student
         </div>
         <div
           onClick={openUpdateStudent}
-          className="cursor-pointer py-4 px-2 w-[150px] bg-green-600 rounded text-white text-lg"
+          className="cursor-pointer py-4 px-2 w-[150px] bg-blue-600 rounded text-white text-lg"
         >
           Update Details
         </div>
