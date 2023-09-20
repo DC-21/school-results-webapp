@@ -9,6 +9,8 @@ async function Student(req, res) {
         regno: req.body.regno,
         name: req.body.name,
         password: req.body.password,
+        intake:req.body.intake,
+        advisor:req.body.advisor,
       },
     });
     res.json(newStudent);
@@ -53,6 +55,7 @@ async function updateStudent(req, res) {
         course: course,
         name: name,
         password: password,
+        advisor:advisor,
       },
     });
 
