@@ -7,7 +7,6 @@ const Landing = () => {
   const [isUpdateResults, setIsUpdateResults] = useState(false);
   const [isUpdateStudent, setIsUpdateStudent] = useState(false);
   const [studentData, setStudentData] = useState([]);
-   const [formData, setFormData] = useState(initialFormData);
 
   const openAddStudentPopup = () => {
     setIsAddStudentOpen(true);
@@ -48,6 +47,8 @@ const Landing = () => {
     course: "",
     semester: 0,
   };
+
+     const [formData, setFormData] = useState(initialFormData);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
