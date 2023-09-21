@@ -7,6 +7,7 @@ const Landing = () => {
   const [isUpdateResults, setIsUpdateResults] = useState(false);
   const [isUpdateStudent, setIsUpdateStudent] = useState(false);
   const [studentData, setStudentData] = useState([]);
+   const [formData, setFormData] = useState(initialFormData);
 
   const openAddStudentPopup = () => {
     setIsAddStudentOpen(true);
@@ -37,6 +38,30 @@ const Landing = () => {
 
   const closeUpdateStudent = () => {
     setIsUpdateStudent(false);
+  };
+
+  const initialFormData = {
+    registerNumber: "",
+    fullName: "",
+    department: "",
+    password: "",
+    course: "",
+    semester: 0,
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const postStudentData = async (studentData) => {
+    try {
+      const response = await axios.post("http://localhost:3000/student", studentData);
+      console.log("Student data posted successfully:", response.data);
+      // You can also update the studentData state or take any other action here
+    } catch (error) {
+      console.error("Error posting student data:", error);
+    }
   };
 
   const fetchStudentData = async () => {
@@ -147,6 +172,8 @@ const Landing = () => {
                     placeholder="Register number"
                     type="number"
                     className="h-8 border border-black rounded"
+                    value={formData.registerNumber}
+                      onChange={handleInputChange}
                   />
                 </div>
                 <div className="w-full flex md:flex-row flex-col gap-4 justify-start md:mt-0 mt-1 mb-3">
@@ -159,6 +186,8 @@ const Landing = () => {
                     type="name"
                     required
                     className="h-8 border border-black rounded"
+                    value={formData.fullName}
+                      onChange={handleInputChange}
                   />
                 </div>
               </div>
@@ -173,6 +202,8 @@ const Landing = () => {
                     type="text"
                     required
                     className="h-8 border border-black rounded"
+                    value={formData.department}
+                      onChange={handleInputChange}
                   />
                 </div>
                 <div className="w-full flex md:flex-row flex-col gap-4 justify-start md:mt-0 mt-1 mb-3">
@@ -185,6 +216,8 @@ const Landing = () => {
                     type="password"
                     required
                     className="h-8 border border-black rounded"
+                    value={formData.password}
+                      onChange={handleInputChange}
                   />
                 </div>
               </div>
@@ -199,6 +232,8 @@ const Landing = () => {
                     required
                     type="text"
                     className="h-8 border border-black rounded"
+                    value={formData.course}
+                      onChange={handleInputChange}
                   />
                 </div>
                 <div className="w-full flex md:flex-row flex-col gap-4 justify-start md:mt-0 mt-1 mb-3">
@@ -211,6 +246,8 @@ const Landing = () => {
                     type="number"
                     required
                     className="h-8 border border-black rounded"
+                    value={formData.semester}
+                      onChange={handleInputChange}
                   />
                 </div>
               </div>

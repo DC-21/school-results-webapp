@@ -159,6 +159,7 @@ async function updateLecturer(req, res) {
       data: {
         name: name,
         password: password,
+        regno: regno,
       },
     });
 
